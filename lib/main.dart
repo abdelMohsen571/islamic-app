@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:islamic_app/home_screen.dart';
+import 'package:islamic_app/screens/home_screen.dart';
+import 'package:islamic_app/screens/sora_details.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,11 +13,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'islamic app',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: HomeScreen(),
+      routes: {SoraDetails.routeName: (context) => SoraDetails()},
     );
   }
 }

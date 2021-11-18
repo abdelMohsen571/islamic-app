@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:islamic_app/widgets/hadeeth_screen.dart';
+import 'package:islamic_app/widgets/quran_screen_widget/quran_screen.dart';
+import 'package:islamic_app/widgets/radio_screen.dart';
+import 'package:islamic_app/widgets/sebha_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -7,6 +12,12 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late int CurrentScreenIndex;
+  final List Screens = [
+    RadioScreen(),
+    SebhaScreen(),
+    HadeethScreen(),
+    QuranScreen()
+  ];
   @override
   void initState() {
     // TODO: implement initState
@@ -23,6 +34,8 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
+          systemOverlayStyle:
+              SystemUiOverlayStyle(statusBarIconBrightness: Brightness.light),
           backgroundColor: Colors.transparent,
           elevation: 0,
           title: Center(
@@ -36,12 +49,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
+        body: Screens[CurrentScreenIndex],
         bottomNavigationBar: BottomNavigationBar(
             currentIndex: CurrentScreenIndex,
             backgroundColor: Color.fromRGBO(183, 147, 95, 100),
             type: BottomNavigationBarType.fixed,
             showUnselectedLabels: false,
-            selectedItemColor: Colors.black,
+            selectedItemColor: Colors.blue,
             unselectedItemColor: Colors.white,
             iconSize: 36,
             selectedLabelStyle: TextStyle(fontSize: 20),
@@ -61,8 +75,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: ImageIcon(AssetImage('assets/icons/hadeeth-ic.png')),
                 label: 'Hadeeth',
               ),
-              BottomNavigationBarItem(
-                  icon: ImageIcon(AssetImage('assets/icons/moshaf_blue.png')),
+              const BottomNavigationBarItem(
+                  icon: const ImageIcon(
+                      AssetImage('assets/icons/moshaf_blue.png')),
                   label: 'Quran'),
             ]),
       ),
