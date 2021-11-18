@@ -10,7 +10,7 @@ class HadeethScreen extends StatelessWidget {
           children: [
             Image.asset('assets/images/basmala_logo.png'),
             HadeethTableHeader(),
-            ListView.builder(itemCount= ,itemBuilder: itemBuilder)
+            // ListView.builder(itemCount= ,itemBuilder: itemBuilder)
           ],
         ),
       ),
