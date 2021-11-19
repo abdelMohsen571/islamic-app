@@ -6,6 +6,10 @@ import 'package:islamic_app/widgets/radio_screen.dart';
 import 'package:islamic_app/widgets/sebha_screen.dart';
 
 class HomeScreen extends StatefulWidget {
+  Function toggleTheme;
+
+  HomeScreen(this.toggleTheme);
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -27,10 +31,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool isLight = Theme.of(context).brightness == Brightness.light;
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/images/bg3.png'), fit: BoxFit.fill)),
+              image: AssetImage(
+                  'assets/images/${isLight ? 'bg3' : 'dark_bg'}.png'),
+              fit: BoxFit.fill)),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
@@ -48,6 +55,15 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
+          actions: [
+            Switch.adaptive(
+                value: isLight,
+                onChanged: (value) {
+                  setState(() {
+                    widget.toggleTheme();
+                  });
+                })
+          ],
         ),
         body: Screens[CurrentScreenIndex],
         bottomNavigationBar: BottomNavigationBar(
