@@ -27,9 +27,22 @@ class _MyAppState extends State<MyApp> {
       themeMode: isLight ? ThemeMode.light : ThemeMode.dark,
       debugShowCheckedModeBanner: false,
       title: 'islamic app',
-      theme:
-          ThemeData(primarySwatch: Colors.blue, brightness: Brightness.light),
-      darkTheme: ThemeData(brightness: Brightness.dark),
+      theme: ThemeData(
+        primaryColor: Color.fromRGBO(183, 147, 95, 1),
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+            primary: Colors.white,
+            secondary: Colors.black,
+            secondaryVariant: Colors.black,
+            brightness: Brightness.light),
+      ),
+      darkTheme: ThemeData(
+        primaryColor: Color.fromRGBO(20, 26, 46, 1),
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+            secondary: Color.fromRGBO(250, 204, 29, 1.0),
+            secondaryVariant: Colors.white,
+            primary: Color.fromRGBO(20, 26, 46, 1),
+            brightness: Brightness.dark),
+      ),
       home: HomeScreen(toggleTheme),
       routes: {
         SoraDetails.routeName: (context) => SoraDetails(),

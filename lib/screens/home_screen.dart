@@ -47,9 +47,9 @@ class _HomeScreenState extends State<HomeScreen> {
           elevation: 0,
           title: Center(
             child: Text(
-              'Islami',
+              '        Islami',
               style: TextStyle(
-                color: Colors.black,
+                color: Theme.of(context).colorScheme.secondaryVariant,
                 fontWeight: FontWeight.bold,
                 fontSize: 30,
               ),
@@ -68,10 +68,10 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Screens[CurrentScreenIndex],
         bottomNavigationBar: BottomNavigationBar(
             currentIndex: CurrentScreenIndex,
-            backgroundColor: Color.fromRGBO(183, 147, 95, 100),
+            backgroundColor: Theme.of(context).primaryColor,
             type: BottomNavigationBarType.fixed,
             showUnselectedLabels: false,
-            selectedItemColor: Colors.blue,
+            selectedItemColor: Theme.of(context).colorScheme.secondary,
             unselectedItemColor: Colors.white,
             iconSize: 36,
             selectedLabelStyle: TextStyle(fontSize: 20),

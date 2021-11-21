@@ -6,15 +6,20 @@ class HadeethDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isLight = Theme.of(context).brightness == Brightness.light;
+
     Map hadeeth = ModalRoute.of(context)!.settings.arguments as Map;
     return Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('assets/images/bg3.png'), fit: BoxFit.fill)),
+                image: AssetImage(
+                    'assets/images/${isLight ? 'bg3' : 'dark_bg'}.png'),
+                fit: BoxFit.fill)),
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
-            iconTheme: IconThemeData(color: Colors.black),
+            iconTheme: IconThemeData(
+                color: Theme.of(context).colorScheme.secondaryVariant),
             systemOverlayStyle:
                 SystemUiOverlayStyle(statusBarIconBrightness: Brightness.light),
             backgroundColor: Colors.transparent,
@@ -23,7 +28,7 @@ class HadeethDetails extends StatelessWidget {
               child: Text(
                 'Islami',
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Theme.of(context).colorScheme.secondaryVariant,
                   fontWeight: FontWeight.bold,
                   fontSize: 30,
                 ),
@@ -39,12 +44,18 @@ class HadeethDetails extends StatelessWidget {
                 gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [Colors.white.withOpacity(0.7), Colors.white])),
+                    colors: [
+                  Theme.of(context).colorScheme.primary.withOpacity(0.7),
+                  Theme.of(context).colorScheme.primary
+                ])),
             child: Column(
               children: [
                 Text(
                   hadeeth['titles'],
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.secondary),
                 ),
                 Divider(
                   color: Color.fromRGBO(183, 147, 95, 100),
@@ -55,7 +66,10 @@ class HadeethDetails extends StatelessWidget {
                     child: Text(
                       hadeeth['text'],
                       textDirection: TextDirection.rtl,
-                      style: TextStyle(fontSize: 20, height: 1.2),
+                      style: TextStyle(
+                          fontSize: 20,
+                          height: 1.2,
+                          color: Theme.of(context).colorScheme.secondary),
                     ),
                   ),
                 )
