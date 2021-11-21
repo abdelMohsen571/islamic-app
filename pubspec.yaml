@@ -60,6 +60,7 @@ flutter:
     - assets/icons/
     - assets/quran_content/
     - assets/hadeeth_content/
+    - assets/ahadeeth/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,31 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:islamic_app/models/QuranData.dart';
 
-class SoraDetails extends StatefulWidget {
-  static const routeName = 'sora_details';
-
-  @override
-  State<SoraDetails> createState() => _SoraDetailsState();
-}
-
-class _SoraDetailsState extends State<SoraDetails> {
-  late int index;
-
-  String? sora;
-  void loadSora(int index) async {
-    sora = await QuranData.readSora(index);
-    setState(() {});
-  }
+class HadeethDetails extends StatelessWidget {
+  static const routeName = 'HadeethDetails';
 
   @override
   Widget build(BuildContext context) {
     bool isLight = Theme.of(context).brightness == Brightness.light;
 
-    index = ModalRoute.of(context)!.settings.arguments as int;
-    if (sora == null) {
-      loadSora(index);
-    }
+    Map hadeeth = ModalRoute.of(context)!.settings.arguments as Map;
     return Container(
         decoration: BoxDecoration(
             image: DecorationImage(
@@ -68,7 +51,7 @@ class _SoraDetailsState extends State<SoraDetails> {
             child: Column(
               children: [
                 Text(
-                  QuranData.QuranNames[index],
+                  hadeeth['titles'],
                   style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
@@ -80,16 +63,14 @@ class _SoraDetailsState extends State<SoraDetails> {
                 ),
                 Expanded(
                   child: SingleChildScrollView(
-                    child: (sora == null)
-                        ? Center(child: CircularProgressIndicator())
-                        : Text(
-                            sora!,
-                            textDirection: TextDirection.rtl,
-                            style: TextStyle(
-                                fontSize: 20,
-                                height: 1.2,
-                                color: Theme.of(context).colorScheme.secondary),
-                          ),
+                    child: Text(
+                      hadeeth['text'],
+                      textDirection: TextDirection.rtl,
+                      style: TextStyle(
+                          fontSize: 20,
+                          height: 1.2,
+                          color: Theme.of(context).colorScheme.secondary),
+                    ),
                   ),
                 )
               ],
